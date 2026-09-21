@@ -12,6 +12,7 @@ export const SITE = Object.freeze({
 
 export const CATALOG = Object.freeze({
   productId: "xix-svgconverter",
+  mayarProductId: "e3ad3713-2483-460d-ab77-34b53bcb8273",
   durationDays: 30,
   trialQuota: 10,
   maxActiveDevices: 1,
@@ -19,7 +20,7 @@ export const CATALOG = Object.freeze({
 });
 
 // Coolify supplies VITE_CHECKOUT_URL after the production Mayar product exists.
-export const CHECKOUT_URL = (import.meta.env?.VITE_CHECKOUT_URL || "").trim();
+export const CHECKOUT_URL = (import.meta.env?.VITE_CHECKOUT_URL || "https://xix-apps.myr.id/pl/xix-svgconverter-monthly-license").trim();
 export const DOWNLOAD_URL = (
   import.meta.env?.VITE_DOWNLOAD_URL ||
   "https://github.com/mfahryf/XIX-SVGConverter-release/releases/latest/download/SVGConverter-latest-x64-setup.exe"
