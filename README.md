@@ -30,5 +30,9 @@ Installer desktop dirilis dari repo publik
 `mfahryf/XIX-SVGConverter-release` dengan nama aset stabil
 `SVGConverter-latest-x64-setup.exe`.
 
+Deployment production memakai resource Coolify `svgconverter-web`, GitHub App
+`fahry-github`, branch `main`, port `80`, dan route
+`https://xixlabs.net/svgconverter/`. Push ke `main` memicu deployment otomatis.
+
 `docs/DESKTOP-WEB-PAGE-STANDARD.md` adalah standar bersama untuk semua halaman
 publik aplikasi desktop XIXLabs.
