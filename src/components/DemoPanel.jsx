@@ -9,6 +9,7 @@ import {
   pngToBlobUrl,
   readSvgSize,
   renderSvgToPng,
+  svgToBlobUrl,
 } from "../lib/renderSvg";
 
 function outputName(sourceName, width) {
@@ -43,13 +44,18 @@ export function DemoPanel({
   const runRef = useRef(0);
   const resultRef = useRef(null);
 
+  // Both blob URLs below belong to the component instance, so they are revoked
+  // when it unmounts or when a new conversion starts; a long session of trying
+  // files would otherwise hold every one of them in memory.
   useEffect(() => () => {
     runRef.current += 1;
     if (resultRef.current?.blobUrl) URL.revokeObjectURL(resultRef.current.blobUrl);
+    if (resultRef.current?.sourceUrl) URL.revokeObjectURL(resultRef.current.sourceUrl);
   }, []);
 
   const clearResult = useCallback(() => {
     if (resultRef.current?.blobUrl) URL.revokeObjectURL(resultRef.current.blobUrl);
+    if (resultRef.current?.sourceUrl) URL.revokeObjectURL(resultRef.current.sourceUrl);
     resultRef.current = null;
     setResult(null);
   }, []);
@@ -89,6 +95,11 @@ export function DemoPanel({
         const blobUrl = pngToBlobUrl(output.png);
         const next = {
           blobUrl,
+          // A starter is markup this repository owns, so it is injected as an
+          // element. An uploaded file is drawn as an image instead, which is
+          // what the blank source panel used to hide: that branch only had
+          // markup for the starter, so a file left the panel empty.
+          sourceUrl: source.isStarter ? null : svgToBlobUrl(source.text),
           declared: readSvgSize(source.text),
           width: output.width,
           height: output.height,
@@ -120,7 +131,7 @@ export function DemoPanel({
       setSelected(entry.id);
       setFile(null);
       if (inputRef.current) inputRef.current.value = "";
-      convert({ text: entry.svg, name: entry.id + ".svg" }, width);
+      convert({ text: entry.svg, name: entry.id + ".svg", isStarter: true }, width);
     },
     [authChecking, authenticated, convert, onRequireLogin, width]
   );
@@ -296,8 +307,12 @@ export function DemoPanel({
         <div className="result">
           <div className="convert-pair">
             <figure className="convert-panel">
-              <span className="convert-panel-art convert-panel-vector" aria-hidden="true"
-                dangerouslySetInnerHTML={{ __html: starter ? starter.svg : "" }} />
+              {result.sourceUrl ? (
+                <img className="convert-panel-art" src={result.sourceUrl} alt={"Source SVG: " + result.sourceName} />
+              ) : (
+                <span className="convert-panel-art convert-panel-vector" aria-hidden="true"
+                  dangerouslySetInnerHTML={{ __html: starter ? starter.svg : "" }} />
+              )}
               <figcaption className="convert-panel-label">
                 <strong>Source</strong>
                 <span>{result.sourceName}</span>

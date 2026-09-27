@@ -49,10 +49,15 @@ export const PLAN_POINTS = [
 
 export const HERO_HIGHLIGHTS = [
   "Convert SVG artwork for print, web, and production workflows",
-  "Use a portable Inkscape engine without a browser upload",
+  "Use a portable local engine without a browser upload",
   "Keep source files on your own computer during conversion",
-  "Batch-convert a playlist and choose the output format you need",
-  "A compact desktop workflow with clear progress and repeatable output",
+  "Runs on Windows 10 or newer",
+  "Batch-convert a list and choose the output format you need",
+  "Pick the output folder and clear finished rows from the list",
+  "Per-file status and a running total while a batch runs",
+  "Keep the source size, or apply automatic padding",
+  "Update check that asks before installing a new version",
+  "Works with no network or proxy setup at all",
 ];
 
 // No sample file is shipped as an asset: the starters are markup in

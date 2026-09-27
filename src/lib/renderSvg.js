@@ -53,6 +53,14 @@ export function pngToBlobUrl(png) {
   return URL.createObjectURL(new Blob([png], { type: "image/png" }));
 }
 
+// The source side of the comparison is shown as an image rather than injected
+// as markup: a visitor's file can carry event handlers, and an SVG loaded
+// through <img> is not allowed to run anything. The starter artwork is still
+// injected inline, because it is markup this repository owns.
+export function svgToBlobUrl(svgText) {
+  return URL.createObjectURL(new Blob([String(svgText || "")], { type: "image/svg+xml;charset=utf-8" }));
+}
+
 // What the SVG says it should be, so the converted size can be compared against
 // it. The renderer above reports the size it produced, which is authoritative.
 export function readSvgSize(svgText) {
