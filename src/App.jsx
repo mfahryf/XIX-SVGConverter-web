@@ -1,8 +1,8 @@
 
-import { VectorizerPage } from "./components/VectorizerPage";
+import { SVGConverterPage } from "./components/SVGConverterPage";
 
 export function App() {
-  return <VectorizerPage />;
+  return <SVGConverterPage />;
 }
 
 export default App;
