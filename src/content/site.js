@@ -33,7 +33,7 @@ export const CATALOG = Object.freeze({
 });
 
 // Coolify supplies VITE_CHECKOUT_URL after the production Mayar product exists.
-export const CHECKOUT_URL = (import.meta.env?.VITE_CHECKOUT_URL || "https://xix-apps.myr.id/pl/xix-svgconverter-monthly-license").trim();
+export const CHECKOUT_URL = (import.meta.env?.VITE_CHECKOUT_URL || "https://xixlabs.net/buy/svgconverter").trim();
 export const DOWNLOAD_URL = (
   import.meta.env?.VITE_DOWNLOAD_URL ||
   "https://github.com/mfahryf/XIX-SVGConverter-release/releases/latest/download/SVGConverter-latest-x64-setup.exe"
@@ -44,7 +44,7 @@ export const PLAN_POINTS = [
   `${CATALOG.trialQuota} successful files total before a licence is required`,
   `Valid for ${CATALOG.durationDays} days from payment`,
   `One licence active on ${CATALOG.maxActiveDevices} device`,
-  "Local SVG conversion with a portable Inkscape engine",
+  "Local SVG conversion with a portable engine",
 ];
 
 export const HERO_HIGHLIGHTS = [
@@ -89,8 +89,8 @@ export const PREVIEW = Object.freeze({
 
 export const FOOTER_LINKS = Object.freeze({
   social: [],
-  main: [{ href: "#download", label: "Download" }, { href: "mailto:hello@xixlabs.net", label: "Support" }],
-  legal: [{ href: "/healthz", label: "Service status" }, { href: "https://xixlabs.net", label: "XIXLabs" }],
+  main: [{ href: "#download", label: "Download" }, { href: "https://wa.me/6281395192226", label: "Support" }],
+  legal: [{ href: "https://chat.whatsapp.com/LjygdVs4fZqHQHq3ME0FaV", label: "Community" }, { href: "https://xixlabs.net", label: "XIXLabs" }],
 });
 
 export const COPYRIGHT = Object.freeze({ text: "© " + new Date().getFullYear() + " XIXLabs", license: "All rights reserved" });
