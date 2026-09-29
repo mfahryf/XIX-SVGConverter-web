@@ -25,6 +25,12 @@ export function engineLabel(engine) {
 
 export const CATALOG = Object.freeze({
   productId: "xix-svgconverter",
+  // The gateway catalog stays the source of truth for the price; when it
+  // changes there, match it here. The page states the amount itself instead of
+  // deferring to the checkout page, so the price is visible before the visitor
+  // commits to leaving the site.
+  priceAmount: 29000,
+  currency: "IDR",
   mayarProductId: "e3ad3713-2483-460d-ab77-34b53bcb8273",
   durationDays: 30,
   trialQuota: 10,
@@ -39,7 +45,10 @@ export const DOWNLOAD_URL = (
   "https://xixlabs.net/download/svgconverter"
 ).trim();
 
-export const PLAN_LABEL = "Price shown at checkout";
+export const PLAN_LABEL = (() => {
+  const amount = CATALOG.priceAmount.toLocaleString("en-US");
+  return CATALOG.currency + " " + amount + " / month";
+})();
 export const PLAN_POINTS = [
   `${CATALOG.trialQuota} successful files total before a licence is required`,
   `Valid for ${CATALOG.durationDays} days from payment`,
